@@ -2,9 +2,7 @@ import numpy as np
 import scipy
 import matplotlib.pyplot as plt
 
-
 # class was created using the assistance of chatGPT
-
 
 class SignalDetection:
    def __init__(self, hits, misses, falseAlarms, correctRejections):
@@ -12,7 +10,6 @@ class SignalDetection:
        self.misses = misses
        self.falseAlarms = falseAlarms
        self.correctRejections = correctRejections
-
 
    def hit_rate(self):
        return (self.hits + 0.5) / (self.hits + self.misses + 1)
