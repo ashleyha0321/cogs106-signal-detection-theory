@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 
 class SignalDetection:
-   def __init__(hits, misses, falseAlarms, correctRejections):
+   def __init__(self, hits, misses, falseAlarms, correctRejections):
        self.hits = hits
        self.misses = misses
        self.falseAlarms = falseAlarms
