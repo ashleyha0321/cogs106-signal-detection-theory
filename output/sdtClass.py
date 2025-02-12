@@ -31,8 +31,3 @@ class SignalDetection:
        hit_rate = self.hit_rate()
        false_alarm_rate = self.false_alarm_rate()
        return -0.5 * (scipy.stats.norm.ppf(hit_rate) + scipy.stats.norm.ppf(false_alarm_rate))
-  
-   def compute(self):
-       return self.d_prime(), self.criterion()
-
-
