@@ -12,20 +12,24 @@ class SignalDetection:
        self.correctRejections = correctRejections
 
    def hit_rate(self):
-       return (self.hits + 0.5) / (self.hits + self.misses + 1)
+        if self.hits + self.misses == 0:
+            return 0.5  # prevent undefined case
+        return (self.hits) / (self.hits + self.misses)
   
    def false_alarm_rate(self):
-       return (self.falseAlarms + 0.5) / (self.falseAlarms + self.correctRejections + 1)
+        if self.falseAlarms + self.correctRejections == 0:
+            return 0.5  # prevent undefined case
+        return (self.falseAlarms) / (self.falseAlarms + self.correctRejections)
   
    def d_prime(self):
        hit_rate = self.hit_rate()
        false_alarm_rate = self.false_alarm_rate()
-       return np.round(scipy.stats.norm.ppf(hit_rate) - scipy.stats.norm.ppf(false_alarm_rate), 6)
+       return scipy.stats.norm.ppf(hit_rate) - scipy.stats.norm.ppf(false_alarm_rate)
   
    def criterion(self):
        hit_rate = self.hit_rate()
        false_alarm_rate = self.false_alarm_rate()
-       return np.round(-0.5 * (scipy.stats.norm.ppf(hit_rate) + scipy.stats.norm.ppf(false_alarm_rate)), 6)
+       return -0.5 * (scipy.stats.norm.ppf(hit_rate) + scipy.stats.norm.ppf(false_alarm_rate))
   
    def compute(self):
        return self.d_prime(), self.criterion()
