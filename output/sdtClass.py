@@ -14,11 +14,13 @@ class SignalDetection:
    def hit_rate(self):
         if self.hits + self.misses == 0:
             return 0.5  # prevent undefined case
+            # or return np.nan
         return (self.hits) / (self.hits + self.misses)
   
    def false_alarm_rate(self):
         if self.falseAlarms + self.correctRejections == 0:
             return 0.5  # prevent undefined case
+            # or return np.nan
         return (self.falseAlarms) / (self.falseAlarms + self.correctRejections)
   
    def d_prime(self):
